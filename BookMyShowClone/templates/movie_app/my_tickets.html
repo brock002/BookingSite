@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+
+{% block content %}
+<hr>
+  {% if tickets %}
+    <div class="mycontent">
+        <h5><strong>Your purchased tickets are: </strong></h5><hr>
+    </div>
+    
+    {% for ticket in tickets %}
+        {% if ticket.paid == True %}
+            <div class="jumbotron myjumbo" style="background-image:url('{{ ticket.show.movie.poster.url }}'); border: 3px solid white;">
+              <div class="bottomleft">
+                <hr> <hr> <hr> <hr> <hr> <hr> <hr> <hr>
+                <strong>Movie: </strong>{{ticket.show.movie.name}} <br>
+                <strong>Hall: </strong>{{ticket.show.hall.name}} <br>
+                <strong>Language: </strong>{{ticket.show.movie.language}} <br>
+                <strong>Movie Length: </strong>{{ticket.show.movie.length.hour}} hours {{ticket.show.movie.length.minute}} mins <br>
+                <strong>Movie time: </strong>{{ticket.show.show_time.time}} <br>
+                <strong>Total price: </strong>{{ticket.total_amount}} Rs.<br>
+                <strong>No. of tickets: </strong>{{ticket.no_of_tickets}} <br>
+              </div>  
+            </div>
+        {% endif %}
+    {% endfor %}
+        
+  {% else %}
+    <div class="jumbotron">
+        <h5>You haven't bought any tickets!!!</h5>
+        <br>
+        <br>
+        <p><strong>Buy some: &nbsp; &nbsp; &nbsp; <a class="btn btn-outline-info btn-sm" href="{% url 'movie_app:current_shows' %}">Movies</a> </strong></p>
+    </div>
+  {% endif %}
+  <hr>
+{% endblock %}

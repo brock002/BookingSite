@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <hr>
+        <div class="jumbotron">
+            <h1>Sign Up</h1>
+            <form method="POST">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <br><br>
+                <input type="submit" value="Sign Up" class="btn btn-outline-success btn-sm">
+            </form>
+        </div>
+{% endblock %}

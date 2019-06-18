@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<hr>
+  <div class="jumbotron">
+    <h1>Welcome!!!</h1> <br>
+    <strong>
+      <p>
+        This is an example of a website that let's you book tickets for current 
+        movies at any hall near you. Advanced booking feature is not impleamented so 
+        you will only be able to book tickets for today's shows.
+      </p>
+      <hr>
+    </strong>
+    <h2>If you are new to the website Sign up here:</h2>
+    <a class="btn btn-outline-primary btn-sm" href="{% url 'signup' %}">Sign Up</a>
+    <br><br>
+    <h3>Already have an account? Log In here:</h3>
+    <a  class="btn btn-outline-primary btn-sm" href="{% url 'movie_app:login' %}">Log In</a>
+  </div>
+{% endblock %}

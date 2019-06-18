@@ -1,0 +1,65 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <hr>
+    <div class='jumbotron anojumbo'>
+      <table class="table table-borderless" style="margin: auto; color: white;">
+          <tr>
+            <th>
+                <strong>Movie: </strong>{{tickets.show.movie.name}} <br>
+                <strong>Hall: </strong>{{tickets.show.hall.name}} <br>
+                <strong>Language: </strong>{{tickets.show.movie.language}} <br>
+                <strong>Movie time: </strong>{{tickets.show.show_time.time}} <br>
+                <strong>Total price: </strong>{{tickets.total_amount}} Rs.<br>
+                <strong>No. of tickets: </strong>{{tickets.no_of_tickets}} <br>
+            </th>
+            <th>
+              <div style="text-align: right;">
+                  <img class="img-fluid img-thumbnail myimg" src="{{ tickets.show.movie.thumbnail.url }}" alt="Something went wrong" height="350px" width="175px">
+              </div>
+            </th>
+          </tr>
+      </table>
+    </div>
+    <div class="mycontent">
+        {% if payment_method %}
+            <script lang='javascipt'>
+              alert("After choosing your payment method you will be asked to provide the detailed information about your credit card or debit card or your UPI client. After that you will get the following...");
+            </script>
+          
+          <p><strong>
+              You have paid: {{tickets.total_amount}} Rs. 
+              <br>
+              <br>
+              Your Booking is done!
+          </p>
+            <br>
+            <br>
+          <h4>Thank You!</h4>
+            <br>
+            <br>
+          </strong>
+
+          <p>Go to Current movies: &nbsp; &nbsp;
+          <a class="btn btn-sm btn-info" href="{% url 'movie_app:current_shows' %}">Shows</a></p>
+
+          <p>Go to Your Tickets: &nbsp; &nbsp;
+          <a class="btn btn-sm btn-info" href="{% url 'movie_app:my_tickets' %}">My Tickets</a></p>
+
+        {% else %}
+        <h5>Select a Payment Method:</h5>
+        <br>
+        <form method="POST">
+            {% csrf_token %}
+            <input type="radio" value="c_card" name="payment_method"> Credit Card<br>
+            <input type="radio" value="d_card" name="payment_method"> Debit Card<br>
+            <input type="radio" value="upi" name="payment_method"> UPI<br>
+            <br>
+            <div class="center">
+              <input class="btn btn-outline-success btn-lg" type="submit" value="PAY">
+            </div>
+        </form>
+        {% endif %}    
+        <hr>
+    </div>
+{% endblock %}

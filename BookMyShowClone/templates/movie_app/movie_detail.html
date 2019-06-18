@@ -1,0 +1,68 @@
+{% extends "base.html" %}
+
+{% block content %}
+<hr>
+  <div class="jumbotron myjumbo" style="background-image:url('{{ movie.poster.url }}');">
+    <div class="bottomleft">
+        <hr> <hr> <hr> <hr> <hr> <hr> <hr> <hr> <hr> <hr> <hr> <hr>
+        <strong>Movie:</strong> &nbsp;
+        <strong>{{movie.name}}</strong>
+        <br>
+        <strong>Released date: </strong> &nbsp; &nbsp; {{ movie.released_date }}
+        <br>
+        <strong>Language: </strong> &nbsp; &nbsp; {{movie.language}}
+        <br>
+        <strong>Movie length: </strong> &nbsp; &nbsp; {{movie.length.hour}} hours {{movie.length.minute}} mins
+    </div>
+
+  </div>
+  <div class="mycontent">
+   
+    <p><h5><strong>Shows Available: </strong></h5></p>
+
+    {% if shows_one != None %}
+      <p>
+          <strong>Grand Cines: </strong> <br>
+          <a href="https://www.google.com/maps/place/Grande+Cines/@26.1798992,91.7492039,17z/data=!3m1!4b1!4m5!3m4!1s0x375a5a297531bd2b:0x85a93a4fdc6c8156!8m2!3d26.1798944!4d91.7513926"
+             target="_blank">
+          Location: Grand Plaza, 5th Floor, G.S. Road, Paltan Bazar, Guwahati, Assam 781008, India
+          </a>
+          <br> <br>
+              {% for show in shows_one %}
+                <a class="btn btn-outline-success" href="{% url 'movie_app:seats' pk=show.pk %}"> {{show.show_time.time}} </a> &nbsp; &nbsp;
+              {% endfor %} 
+      </p> <br>
+    {% endif %}
+      <br>
+    {% if shows_two != None %}
+      <p>
+          <strong>Carnival Cinemas: Beltola: </strong> <br>
+          <a href="https://www.google.com/maps/place/PVR:+City+Center,+Guwahati/@26.1584367,91.771434,15.64z/data=!4m8!1m2!2m1!1spvr+near+City+Center,+GS+Road,+Ganeshguri,+Guwahati,+Assam!3m4!1s0x375a59eacc1a2107:0xf5d07af6b7a78e3b!8m2!3d26.1544855!4d91.781361"
+             target="_blank">
+             Location: Christian Basti, G.S. Road, Guwahati, Assam 781005, India
+          </a>
+          <br> <br>
+              {% for show in shows_two %}
+                <a class="btn btn-outline-success" href="{% url 'movie_app:seats' pk=show.pk %}"> {{show.show_time.time}} </a> &nbsp; &nbsp;
+              {% endfor %}      
+      </p> <br>
+    {% endif %}
+      <br>
+    {% if shows_three != None %}
+      <p>
+          <strong>PVR: City Center: </strong> <br>
+          <a href="https://www.google.com/maps/place/Carnival+Cinemas/@26.1202477,91.7959522,17z/data=!3m1!4b1!4m5!3m4!1s0x375a5f4c31dce8f3:0xd2e4ec2e22996e05!8m2!3d26.1202429!4d91.7981409"
+             target="_blank">
+             Location: Beltola-Basistha Road, Beltola, Guwahati, Assam 781028, India
+          </a>
+          <br> <br>
+              {% for show in shows_three %}
+                <a class="btn btn-outline-success" href="{% url 'movie_app:seats' pk=show.pk %}"> {{show.show_time.time}} </a> &nbsp; &nbsp;
+              {% endfor %} 
+      </p> <br>
+    {% endif %}
+
+  
+
+  </div>
+{% endblock %}

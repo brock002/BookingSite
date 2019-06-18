@@ -1,0 +1,96 @@
+{% extends "base.html" %}
+  
+{% block content %}
+<hr>
+  <div class='jumbotron anojumbo'>
+    <table class="table table-borderless" style="margin: auto; color: white;">
+          <tr>
+              <td>
+                  <strong>Movie: </strong>{{show.movie.name}} <br>
+                  <strong>Hall: </strong>{{show.hall.name}} <br>
+                  <strong>Language: </strong>{{show.movie.language}} <br>
+                  <strong>Movie time: </strong>{{show.show_time.time}} <br>
+              </td>
+              <td>
+                  <div style="text-align: right;">
+                      <img class="img-fluid img-thumbnail myimg" src="{{ show.movie.thumbnail.url }}" alt="Something went wrong">
+                  </div>
+              </td>
+            </tr> 
+    </table>
+  </div>
+  
+  <div class="mycontent">
+
+
+    {% if total %}
+      <hr>
+      <pre style="color:aliceblue; text-align: center;" ><h5><strong>
+
+        Ticket(x1)                  {{ticket_price}}
+        No. of Tickets:                 {{ticket_no}}
+        ---------------------------------
+        Total(x{{ticket_no}})                   {{total}}
+      </strong></h5></pre>
+      <br>
+      <div class="center">
+          <a class="btn btn-outline-success btn-lg" href="{% url 'movie_app:payments' pk=show.pk %}">PAY</a>
+      </div>
+    {% else %}
+      <h5>BOOK YOUR TICKETS BELOW: </h5>
+    <form action="#" method="POST">
+      {% csrf_token %}
+      <div class="mycontainer">
+        <hr>
+          &nbsp; &nbsp; <input type="radio" name="type_radio" value="VIP">
+          &nbsp; &nbsp; &nbsp; &nbsp; VIP tickets:
+          &nbsp; &nbsp; &nbsp; &nbsp; Total: {{show.hall.vip_no}}
+          &nbsp; &nbsp; &nbsp; &nbsp; Left: {{show.vip_left}}
+          &nbsp; &nbsp; &nbsp; &nbsp; Price: {{show.hall.vip_price}} Rs.
+        <hr>    
+      </div>
+      <div class="mycontainer">
+        <hr>
+          &nbsp; &nbsp; <input type="radio" name="type_radio" value="Platinum">
+          &nbsp; &nbsp; &nbsp; &nbsp; Platinum tickets:
+          &nbsp; &nbsp; &nbsp; &nbsp; Total: {{show.hall.platinum_no}}
+          &nbsp; &nbsp; &nbsp; &nbsp; Left: {{show.platinum_left}}
+          &nbsp; &nbsp; &nbsp; &nbsp; Price: {{show.hall.platinum_price}}
+        <hr>
+      </div>
+      <div class="mycontainer">
+        <hr>
+          &nbsp; &nbsp; <input type="radio" name="type_radio" value="Gold">
+          &nbsp; &nbsp; &nbsp; &nbsp; Gold tickets:
+          &nbsp; &nbsp; &nbsp; &nbsp; Total: {{show.hall.gold_no}}
+          &nbsp; &nbsp; &nbsp; &nbsp; Left: {{show.gold_left}}
+          &nbsp; &nbsp; &nbsp; &nbsp; Price: {{show.hall.gold_price}}
+        <hr>
+      </div>
+      <div class="mycontainer">
+        <hr>
+          &nbsp; &nbsp; <input type="radio" name="type_radio" value="Silver">
+          &nbsp; &nbsp; &nbsp; &nbsp; Silver tickets:
+          &nbsp; &nbsp; &nbsp; &nbsp; Total: {{show.hall.silver_no}}
+          &nbsp; &nbsp; &nbsp; &nbsp; Left: {{show.silver_left}}
+          &nbsp; &nbsp; &nbsp; &nbsp; Price: {{show.hall.silver_price}}
+        <hr>
+      </div>
+      <strong>
+          <label for="no_of_ticket">
+            Choose How many tickets you want (upto 10 tickets can be bought at one time): &nbsp; &nbsp; 
+          </label>
+      </strong>
+      <input type="number" name="no_of_ticket" min="1" max="10" placeholder="0"> <br> <br>
+      <div class="center">
+        <input type="submit" value="Calculate Amount" class="btn btn-success centerbutton">
+      </div>
+    </form>
+
+    {% endif %}
+
+    <hr>
+    <hr>
+  </div>  
+
+{% endblock %}

@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <hr>
+  <strong style="color:aliceblue;"><h4>Thanks!!!</h4></strong>
+
+  <hr>
+  <a class="btn btn-info" href="{% url 'movie_app:login' %}">Log Back In!</a> &nbsp; &nbsp;
+  <a class="btn btn-info" href="{% url 'signup' %}">Sign Up with a different Account!</a>
+  <hr>
+{% endblock %}

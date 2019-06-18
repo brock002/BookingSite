@@ -1,0 +1,46 @@
+body {
+    font-family: 'Ubuntu', sans-serif;
+}
+
+.myjumbo{
+    font-family: 'Roboto Condensed', sans-serif;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-color: #070816;
+    background-size: 100%;
+    min-height: 450px;
+    font-weight: bold;
+    color: antiquewhite;
+}
+
+.mycontainer {
+    background-color: #491616;
+    font-weight: bolder;
+}
+
+.anojumbo {
+    font-family: 'Roboto Condensed', sans-serif;
+    color: white;
+    max-height: 375px;
+    font-size: 1.3em;
+    background-color: #381010;
+    font-weight: bold;
+}
+
+.center {
+    text-align: center;
+}
+
+.right {
+    text-align: right;
+}
+
+.myimg {
+    height: 280px;
+    width: 170px;
+}
+
+.mytable {
+    color: white;
+    text-align: center;
+}

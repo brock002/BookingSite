@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+
+{% block content %}
+<hr>
+<hr>
+<div class="mycontent">
+
+  <h3>Current movies are: </h3><br><br>
+
+        <table class="table table-borderless mytable">
+            <tr>
+                {% for movie in movie_list %}
+                
+                    {% if forloop.counter0 in breaks %}
+                        </tr>
+                        <tr>
+                    {% endif %}
+                    <td>
+                        <a style="font-size: 1.2em;" href="{% url 'movie_app:movie_shows' pk=movie.pk %}">
+                            <img class="img-fluid img-thumbnail" src="{{ movie.thumbnail.url }}" alt="Something went wrong" height="300px" width="150px">
+                            <br>
+                            <strong>{{movie.name}}</strong><br>
+                        </a>
+                        {{movie.language}}
+                    </td>
+                {% endfor %}
+            </tr>
+        </table>    
+</div>
+
+{% endblock%}
