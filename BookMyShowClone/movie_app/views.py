@@ -54,7 +54,7 @@ def user_logout(request):
 @login_required
 def MovieListView(request):
     movie_list = models.Movie.objects.all()
-    return render(request, 'movie_app/movies_showing.html', {'movie_list':movie_list, 'i':0, 'breaks':(0, 3, 6, 9)})
+    return render(request, 'movie_app/movies_showing.html', {'movie_list':movie_list, 'breaks':(0, 3, 6, 9)})
 
 @login_required
 def show_times(request, pk):
