@@ -2,6 +2,13 @@
 
 {% block content %}
 <hr>
+  {% if user.is_authenticated %}
+    <div class="mycontent">
+      <h5>Your account was not logged out properly last time!!!</h5>
+      <hr>
+      <a class="btn btn-outline-danger btn-lg" href="{% url 'logout' %}">Log Out first!</a>
+    </div>
+  {% else %}
   <div class="jumbotron">
     <h1>Welcome!!!</h1> <br>
     <strong>
@@ -18,4 +25,5 @@
     <h3>Already have an account? Log In here:</h3>
     <a  class="btn btn-outline-primary btn-sm" href="{% url 'movie_app:login' %}">Log In</a>
   </div>
+  {% endif %} 
 {% endblock %}
